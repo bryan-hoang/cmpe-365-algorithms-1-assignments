@@ -120,9 +120,9 @@ class Slice(object):
 
     def __init__(self, verts: list[Vertex]):
         """Initialize a slice with vertices."""
-        self.verts: list[
-            Vertex
-        ] = verts  # [ v0, v1, v2, v3, ... ] in RH order around +y axis
+        self.verts: list[Vertex] = (
+            verts  # [ v0, v1, v2, v3, ... ] in RH order around +y axis
+        )
 
         self.id = Slice.nextID
         Slice.nextID += 1
@@ -166,9 +166,7 @@ class Triangle(object):
 
         self.norm = normalize(
             crossProduct(
-                subtract(
-                    verts[1].coords, verts[0].coords
-                ),  # outward-pointing normal
+                subtract(verts[1].coords, verts[0].coords),  # outward-pointing normal
                 subtract(verts[2].coords, verts[0].coords),
             )
         )
@@ -220,7 +218,7 @@ def buildTriangles(slice_0: Slice, slice_1: Slice):
     #
     # [1 mark]s
 
-    # Storing the indexs to make the cyclic tuples.
+    # Storing the indexes to make the cyclic tuples.
     _, slice_0_clostest_vert_index, slice_1_clostest_vert_index = min(
         (
             (distance(v_0.coords, v_1.coords), i, j)
@@ -264,13 +262,9 @@ def buildTriangles(slice_0: Slice, slice_1: Slice):
 
     # Initializing both 2-D arrays with -1 or None, since they should be
     # processed fully eventually.
-    min_area: list[list[float]] = [
-        [-1] * len(columns) for _ in range(len(rows))
-    ]
+    min_area: list[list[float]] = [[-1] * len(columns) for _ in range(len(rows))]
 
-    min_dir: list[list[Dir | None]] = [
-        [None] * len(columns) for _ in range(len(rows))
-    ]
+    min_dir: list[list[Dir | None]] = [[None] * len(columns) for _ in range(len(rows))]
 
     # Fill in the minArea array
 
@@ -352,7 +346,7 @@ def buildTriangles(slice_0: Slice, slice_1: Slice):
     #        4    1171 |  1217 |  1005 |   840 |   960 -
     #
     #
-    # The 960 at row, column [4][4] is the minium area.  The hypen (-)
+    # The 960 at row, column [4][4] is the minimum area.  The hyphen (-)
     # at [4][4] indicates that that minimum area is arrived at from
     # the previous column.  Then, in row, column [4][3], the vertical
     # bar (|) indicates that that is arrived at from the previous row.
@@ -385,9 +379,7 @@ def buildTriangles(slice_0: Slice, slice_1: Slice):
                     direction_symbol = "-"
                 else:
                     direction_symbol = "."
-                print(
-                    f"{min_area[row][col]:>7.1f} {direction_symbol} ", end=""
-                )
+                print(f"{min_area[row][col]:>7.1f} {direction_symbol} ", end="")
             print()
 
     # print_area_direction_table()
@@ -434,7 +426,7 @@ def buildTriangles(slice_0: Slice, slice_1: Slice):
 
         triangles.append(Triangle(triangle_verts))
 
-    # Printing the area of the miniumum-area triangulation to compare against
+    # Printing the area of the minimum-area triangulation to compare against
     # peers.
     area_of_triangulation = sum(
         triangleArea(*(v.coords for v in t.verts)) for t in triangles
@@ -486,9 +478,7 @@ def display(_wait=False):
     else:
         zoomedFovy = fovy
 
-    gluPerspective(
-        zoomedFovy, float(windowWidth) / float(windowHeight), fNear, fFar
-    )
+    gluPerspective(zoomedFovy, float(windowWidth) / float(windowHeight), fNear, fFar)
 
     # Apply rotation to eye position
 
@@ -528,9 +518,7 @@ def display(_wait=False):
     # Set up lighting for triangles
 
     lightDir = add(
-        scalarMult(
-            5, normalize(rotatedEye)
-        ),  # light is above and right of viewer
+        scalarMult(5, normalize(rotatedEye)),  # light is above and right of viewer
         add(
             normalize(rotatedUp),
             normalize(crossProduct(rotatedUp, rotatedEye)),
@@ -639,12 +627,10 @@ def keyCallback(_window, key, _scancode, action, _mods):
     global labelTris
 
     if action == glfw.PRESS:
-
         if key == glfw.KEY_ESCAPE:  # quit upon ESC
             sys.exit(0)
 
         elif key == ord("C"):  # compute min-area triangulation
-
             if showCurrentSlice:
                 allTriangles = buildTriangles(
                     allSlices[currentSlice], allSlices[currentSlice + 1]
@@ -654,9 +640,7 @@ def keyCallback(_window, key, _scancode, action, _mods):
                 for i in range(len(allSlices) - 1):
                     sys.stdout.write("\r%d left " % (len(allSlices) - 1 - i))
                     sys.stdout.flush()
-                    allTriangles += buildTriangles(
-                        allSlices[i], allSlices[i + 1]
-                    )
+                    allTriangles += buildTriangles(allSlices[i], allSlices[i + 1])
                 sys.stdout.write("\r          \n")
 
         elif key == ord("S"):  # show current slice
@@ -680,7 +664,6 @@ def keyCallback(_window, key, _scancode, action, _mods):
             labelTris = not labelTris
 
         elif key == ord("/"):
-
             print("keys: c - compute min-area triangulation")
             print("      s - toggle current slice")
             print("      < - current slice moves up")
@@ -719,7 +702,6 @@ def mouseButtonCallback(window, btn, action, _keyModifiers):
     global fovyDelta
 
     if action == glfw.PRESS:
-
         button = btn
         initX, initY = glfw.get_cursor_pos(window)  # store mouse position
 
@@ -727,7 +709,6 @@ def mouseButtonCallback(window, btn, action, _keyModifiers):
         rotationAxis = [1, 0, 0]
 
     elif action == glfw.RELEASE:
-
         if rotationAngle is not None:
             eye = rotateVector(eye, rotationAngle, rotationAxis)
             updir = rotateVector(updir, rotationAngle, rotationAxis)
@@ -763,7 +744,6 @@ def actOnMouseMovement(window, button, x, y):
     global currentImage, rotationAngle, rotationAxis, fovyDelta
 
     if button == glfw.MOUSE_BUTTON_LEFT:
-
         # rotate viewpoint
 
         # Get initial vector from (0,0,0) to mouse
@@ -824,9 +804,7 @@ def actOnMouseMovement(window, button, x, y):
 
         # Move rotation axis into world coordinate system
 
-        eyeZ = normalize(
-            [eye[0] - lookat[0], eye[1] - lookat[1], eye[2] - lookat[2]]
-        )
+        eyeZ = normalize([eye[0] - lookat[0], eye[1] - lookat[1], eye[2] - lookat[2]])
         eyeX = normalize(crossProduct(eyeZ, updir))
         eyeY = normalize(crossProduct(eyeZ, eyeX))
 
@@ -843,7 +821,6 @@ def actOnMouseMovement(window, button, x, y):
         ]
 
     elif button == glfw.MOUSE_BUTTON_RIGHT:
-
         # zoom viewpoint
 
         fovyDelta = (initY - y) / float(windowHeight) * fovy
@@ -950,7 +927,6 @@ def readSlices(f):
     lineNum = 1
 
     for i in range(numSlices):
-
         numPoints = int(lines[lineNum])
         lineNum += 1
 
@@ -997,9 +973,7 @@ def main():
     if haveGlutForFonts:
         glutInit()
 
-    window = glfw.create_window(
-        windowWidth, windowHeight, "3D Meshing", None, None
-    )
+    window = glfw.create_window(windowWidth, windowHeight, "3D Meshing", None, None)
 
     if not window:
         glfw.terminate()
@@ -1028,7 +1002,6 @@ def main():
     display(window)
 
     while not glfw.window_should_close(window):
-
         glfw.wait_events()
 
         if mousePositionChanged:

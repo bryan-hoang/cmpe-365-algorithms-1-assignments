@@ -10,7 +10,6 @@ You'll need Python 3 and must install these packages:
   PyOpenGL, GLFW
 """
 
-
 import math
 import sys
 
@@ -78,18 +77,14 @@ class Point:
             glColor3f(0.9, 0.9, 0.4)
             glBegin(GL_POLYGON)
             for theta in thetas:
-                glVertex2f(
-                    self.x + r * math.cos(theta), self.y + r * math.sin(theta)
-                )
+                glVertex2f(self.x + r * math.cos(theta), self.y + r * math.sin(theta))
             glEnd()
 
         # Outline the pointF
         glColor3f(0, 0, 0)
         glBegin(GL_LINE_LOOP)
         for theta in thetas:
-            glVertex2f(
-                self.x + r * math.cos(theta), self.y + r * math.sin(theta)
-            )
+            glVertex2f(self.x + r * math.cos(theta), self.y + r * math.sin(theta))
         glEnd()
 
         # Draw edges to next CCW and CW points.
@@ -433,9 +428,7 @@ def mouse_button_callback(window, _btn, action, _key_modifiers):
         # Find point under mouse
         x, y = glfw.get_cursor_pos(window)  # mouse position
 
-        w_x = (x - 0) / float(window_width) * (
-            window_right - window_left
-        ) + window_left
+        w_x = (x - 0) / float(window_width) * (window_right - window_left) + window_left
         w_y = (window_height - y) / float(window_height) * (
             window_top - window_bottom
         ) + window_bottom
@@ -443,8 +436,7 @@ def mouse_button_callback(window, _btn, action, _key_modifiers):
         min_point = None
         for point in all_points:
             dist = math.sqrt(
-                (point.x - w_x) * (point.x - w_x)
-                + (point.y - w_y) * (point.y - w_y)
+                (point.x - w_x) * (point.x - w_x) + (point.y - w_y) * (point.y - w_y)
             )
             if dist < r and dist < min_dist:
                 min_dist = dist

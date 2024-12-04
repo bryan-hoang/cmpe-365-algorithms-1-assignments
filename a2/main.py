@@ -78,9 +78,7 @@ class Triangle:
 
     def __init__(self, verts: list[int]):
         """Initialize a triangle with the given vertices."""
-        self.verts = (
-            verts  # 3 vertices.  Each is an index into the 'allVerts' global.
-        )
+        self.verts = verts  # 3 vertices.  Each is an index into the 'allVerts' global.
         self.adj_tris: list[Triangle] = []  # adjacent triangles
 
         self.next_tri: Triangle | None = None  # next triangle on strip
@@ -109,7 +107,6 @@ class Triangle:
         """Draw this triangle."""
         # Highlight with yellow fill
         if self.highlight1 or self.highlight2:
-
             if self.highlight1:
                 glColor3f(0.9, 0.9, 0.4)  # dark yellow
             else:
@@ -165,8 +162,7 @@ class Triangle:
     def contains_point(self, point):
         """Determine whether this triangle contains a point."""
         return (
-            turn(allVerts[self.verts[0]], allVerts[self.verts[1]], point)
-            == LEFT_TURN
+            turn(allVerts[self.verts[0]], allVerts[self.verts[1]], point) == LEFT_TURN
             and turn(allVerts[self.verts[1]], allVerts[self.verts[2]], point)
             == LEFT_TURN
             and turn(allVerts[self.verts[2]], allVerts[self.verts[0]], point)
@@ -245,6 +241,7 @@ def build_tristrips(triangles: list[Triangle]):
     This function does not return anything.  The strips are formed by
     modifying the 'nextTri' and 'prevTri' pointers in each triangle.
     """
+
     # Common logic for selecting a triangle with a minimum number of adjacent
     # non-strip triangles.
     def get_triangle_with_min_adj_non_strip_triangles(
@@ -282,9 +279,7 @@ def build_tristrips(triangles: list[Triangle]):
         while adj_non_strip_triangles:
             # Add another triangle to the strip.
             next_strip_triangle: Triangle = (
-                get_triangle_with_min_adj_non_strip_triangles(
-                    adj_non_strip_triangles
-                )
+                get_triangle_with_min_adj_non_strip_triangles(adj_non_strip_triangles)
             )
             non_strip_triangles -= {next_strip_triangle}
 
@@ -398,14 +393,11 @@ def window_reshape_callback(_window, new_width, new_height):
 def mouse_button_callback(window, _btn, action, _key_modifiers):
     """Handle mouse click/release."""
     if action == glfw.PRESS:
-
         # Find point under mouse
 
         x, y = glfw.get_cursor_pos(window)  # mouse position
 
-        w_x = (x - 0) / float(window_width) * (
-            windowRight - windowLeft
-        ) + windowLeft
+        w_x = (x - 0) / float(window_width) * (windowRight - windowLeft) + windowLeft
         w_y = (window_height - y) / float(window_height) * (
             windowTop - windowBottom
         ) + windowBottom
@@ -421,9 +413,7 @@ def mouse_button_callback(window, _btn, action, _key_modifiers):
 
         if selected_tri:
             selected_tri.highlight1 = not selected_tri.highlight1
-            print(
-                f"{selected_tri} with adjacent {repr(selected_tri.adj_tris)}"
-            )
+            print(f"{selected_tri} with adjacent {repr(selected_tri.adj_tris)}")
             for adjacent_triangle in selected_tri.adj_tris:
                 adjacent_triangle.highlight2 = not adjacent_triangle.highlight2
 
@@ -439,26 +429,19 @@ def read_triangles(file):
     # Read the vertices
 
     num_verts = int(lines[0])
-    allVerts = [
-        [float(c) for c in line.split()] for line in lines[1 : num_verts + 1]
-    ]
+    allVerts = [[float(c) for c in line.split()] for line in lines[1 : num_verts + 1]]
 
     # Check that the vertices are valid
 
     for line_number, vertex in enumerate(allVerts):
         if len(vertex) != 2:
-            print(
-                f"Line {line_number + 2}: "
-                f"vertex does not have two coordinates."
-            )
+            print(f"Line {line_number + 2}: " f"vertex does not have two coordinates.")
             errors_found = True
 
     # Read the triangles
 
     num_tris = int(lines[num_verts + 1])
-    tri_verts = [
-        [int(v) for v in line.split()] for line in lines[num_verts + 2 :]
-    ]
+    tri_verts = [[int(v) for v in line.split()] for line in lines[num_verts + 2 :]]
 
     # Check that the triangle vertices are valid
 
@@ -483,10 +466,7 @@ def read_triangles(file):
     tris: list[Triangle] = []
 
     for tvs in tri_verts:
-        if (
-            turn(allVerts[tvs[0]], allVerts[tvs[1]], allVerts[tvs[2]])
-            != COLLINEAR
-        ):
+        if turn(allVerts[tvs[0]], allVerts[tvs[1]], allVerts[tvs[2]]) != COLLINEAR:
             tris.append(Triangle(tvs))  # (don't include degenerate triangles)
 
     # For each triangle, find and record its adjacent triangles
@@ -495,7 +475,6 @@ def read_triangles(file):
     # we'll exploit Python's hashed dictionary keys.
 
     if False:
-
         for tri in tris:  # brute force
             adj_tris = []
             for i in range(3):
@@ -503,17 +482,13 @@ def read_triangles(file):
                 v_1 = tri.verts[(i + 1) % 3]
                 for tri2 in tris:
                     for j in range(3):
-                        if (
-                            v_1 == tri2.verts[j % 3]
-                            and v_0 == tri2.verts[(j + 1) % 3]
-                        ):
+                        if v_1 == tri2.verts[j % 3] and v_0 == tri2.verts[(j + 1) % 3]:
                             adj_tris.append(tri2)
                     if len(adj_tris) == 3:
                         break
             tri.adj_tris = adj_tris
 
     else:  # hashing
-
         edges = {}
 
         for tri in tris:
@@ -526,9 +501,7 @@ def read_triangles(file):
         for tri in tris:
             adj_tris = []
             for i in range(3):
-                v_1 = tri.verts[
-                    i % 3
-                ]  # find a reversed edge of an adjacent triangle
+                v_1 = tri.verts[i % 3]  # find a reversed edge of an adjacent triangle
                 v_0 = tri.verts[(i + 1) % 3]
                 key = f"{v_0:f}-{v_1:f}"
                 if key in edges:
@@ -567,9 +540,7 @@ def main():
         print("Error: GLFW failed to initialize")
         sys.exit(1)
 
-    window = glfw.create_window(
-        window_width, window_height, "Assignment 2", None, None
-    )
+    window = glfw.create_window(window_width, window_height, "Assignment 2", None, None)
 
     if not window:
         glfw.terminate()
