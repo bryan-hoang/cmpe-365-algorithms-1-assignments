@@ -1,11 +1,11 @@
 [project]
 dependencies = [
-    "glfw==2.4.0",
-    "pyopengl==3.1.5"
+    "glfw>=2.4.0",
+    "pyopengl>=3.1.5"
 ]
 name = "cmpe-365-algorithms-1-assignments"
 readme = "README.md"
-requires-python = ">=3.10"
+requires-python = ">=3.13"
 version = "0.1.0"
 
 [dependency-groups]

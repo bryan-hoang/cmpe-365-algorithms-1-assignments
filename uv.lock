@@ -1,5 +1,5 @@
 version = 1
-requires-python = ">=3.10"
+requires-python = ">=3.13"
 
 [[package]]
 name = "cmpe-365-algorithms-1-assignments"
@@ -17,8 +17,8 @@ dev = [
 
 [package.metadata]
 requires-dist = [
-    { name = "glfw", specifier = "==2.4.0" },
-    { name = "pyopengl", specifier = "==3.1.5" },
+    { name = "glfw", specifier = ">=2.4.0" },
+    { name = "pyopengl", specifier = ">=3.1.5" },
 ]
 
 [package.metadata.requires-dev]
@@ -26,27 +26,27 @@ dev = [{ name = "ruff", specifier = ">=0.8.1" }]
 
 [[package]]
 name = "glfw"
-version = "2.4.0"
+version = "2.8.0"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/d9/b0/2370cb096c4a3d4504ee16510cc67b75d7da11dca53825504e253d636132/glfw-2.4.0.tar.gz", hash = "sha256:79011ef01c2045e685a8c7f2db7755e3c3a848d7cf349439703fa1203c350fd5", size = 30384 }
+sdist = { url = "https://files.pythonhosted.org/packages/2d/2a/48716456664a0db318e9a2565a1622a5c8400a553688b17d6d6d3a5efbd9/glfw-2.8.0.tar.gz", hash = "sha256:90e90d328b0b26fed6e1631d21801e2d8a7a0c5dcb480e733c177567ec9666f0", size = 31372 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/37/43/7e1d1c7ab37ec0ab5d01f718ff0636fcae25b05b7eea0b11097938967aee/glfw-2.4.0-py2.py27.py3.py30.py31.py32.py33.py34.py35.py36.py37.py38-none-macosx_10_6_intel.whl", hash = "sha256:e18431ab0d57eec6dffd031246b07f9f81356468e0f2377e49d9def2c05c686f", size = 95292 },
-    { url = "https://files.pythonhosted.org/packages/9a/ee/85193df9b6d885e9d65fca60bbd85ead230104cd2c35d529321d8bab2b10/glfw-2.4.0-py2.py27.py3.py30.py31.py32.py33.py34.py35.py36.py37.py38-none-macosx_11_0_arm64.whl", hash = "sha256:db3e992f56e9603e18ca7d994018aa1486de7f078b4bfe9e7a21d4fecb2368ae", size = 90415 },
-    { url = "https://files.pythonhosted.org/packages/29/e1/2930f475ae12849e79933d7a79c159e5b4f025c8e57eab92e103c1436beb/glfw-2.4.0-py2.py27.py3.py30.py31.py32.py33.py34.py35.py36.py37.py38-none-manylinux2010_i686.whl", hash = "sha256:242cd2b2e8cf7fb7de9d692fafe233dee607de90ca837d5d162f810e9e124b4f", size = 114317 },
-    { url = "https://files.pythonhosted.org/packages/df/71/673e43472cb8ae39b082325e84ddea4e0bf59225b3706cb548cf1447b02f/glfw-2.4.0-py2.py27.py3.py30.py31.py32.py33.py34.py35.py36.py37.py38-none-manylinux2010_x86_64.whl", hash = "sha256:4bfd157450fde9ece284f501932815f49a2474716156c564b6a4b739acd76c3b", size = 120462 },
-    { url = "https://files.pythonhosted.org/packages/86/f0/05ee21f48509f16f1d1b6d6ca45b9462e3bc1234a266695f71ae38b45b3a/glfw-2.4.0-py2.py27.py3.py30.py31.py32.py33.py34.py35.py36.py37.py38-none-manylinux2014_aarch64.whl", hash = "sha256:75ac4b51bee309f2477d657e54ba771c00f74519cf991b6de8ce848ce0c2080c", size = 196700 },
-    { url = "https://files.pythonhosted.org/packages/74/6a/44a3a90f3df7f80c6e2b7f0086e2ce5f4f3a88dca9c7f090e2dcb5c2d84b/glfw-2.4.0-py2.py27.py3.py30.py31.py32.py33.py34.py35.py36.py37.py38-none-manylinux2014_x86_64.whl", hash = "sha256:2a5c24642b44304e8013d10bd102298bb9d9c42ab20ec24e913d1f19b648e8ee", size = 205166 },
-    { url = "https://files.pythonhosted.org/packages/21/61/40364a77f26e34a18fbb1acdeded5e386459f0679ea3ef6c846d96e77761/glfw-2.4.0-py2.py27.py3.py30.py31.py32.py33.py34.py35.py36.py37.py38-none-win32.whl", hash = "sha256:8c40b94f4b804c4eb90f1eae3b4a61148d6f29bce46b18cbcda9fb592ceff6b9", size = 495840 },
-    { url = "https://files.pythonhosted.org/packages/b2/54/6b9a730c8170615daad58410f26536313bf776201f82097fdb64fe9393bf/glfw-2.4.0-py2.py27.py3.py30.py31.py32.py33.py34.py35.py36.py37.py38-none-win_amd64.whl", hash = "sha256:24a90d02aa31a0409543f4dcb8a92f342dee59a678032470401741ea0869dedc", size = 491812 },
+    { url = "https://files.pythonhosted.org/packages/b6/f1/4d412c337cba7aa2f77bac46df463ab0cf8c82dd70a02f75c915e506fb15/glfw-2.8.0-py2.py27.py3.py30.py31.py32.py33.py34.py35.py36.py37.py38.p39.p310.p311.p312.p313-none-macosx_10_6_intel.whl", hash = "sha256:28aaef2f022b57cd37525ad1d11ba9049931a273359964fb3cd36762eb093ed1", size = 105239 },
+    { url = "https://files.pythonhosted.org/packages/d1/76/1c5e408b55f8ed6787421f4ceaa1f26b6618a8ece9b6c199e559be810d5f/glfw-2.8.0-py2.py27.py3.py30.py31.py32.py33.py34.py35.py36.py37.py38.p39.p310.p311.p312.p313-none-macosx_11_0_arm64.whl", hash = "sha256:0239e478ff065719064fd1272ad29f8542e8178b11c614674bb930d85aa2d1e7", size = 102088 },
+    { url = "https://files.pythonhosted.org/packages/47/16/2ffe39faf5bababe5b4ac47a2a6bfdb3ba5d88e4837228a723cb45cd919e/glfw-2.8.0-py2.py27.py3.py30.py31.py32.py33.py34.py35.py36.py37.py38.p39.p310.p311.p312.p313-none-manylinux2014_aarch64.whl", hash = "sha256:44b5313cffa4a037e8e2988bccba6fa7de0a24123509f4ccf3e49b831cf72abb", size = 229946 },
+    { url = "https://files.pythonhosted.org/packages/43/3f/038bd92471d38654e440c30faccff1d36f1da5e9ea96cc112ac6d59777e5/glfw-2.8.0-py2.py27.py3.py30.py31.py32.py33.py34.py35.py36.py37.py38.p39.p310.p311.p312.p313-none-manylinux2014_x86_64.whl", hash = "sha256:0fd982cf42a8e3137e05e392280826311961f9e99c82a0ccf22a63a0d2acd143", size = 241890 },
+    { url = "https://files.pythonhosted.org/packages/23/83/714deff4fc489e760bf92b8335005ba291f450ed1ba8fd651d708b787fb4/glfw-2.8.0-py2.py27.py3.py30.py31.py32.py33.py34.py35.py36.py37.py38.p39.p310.p311.p312.p313-none-manylinux_2_28_aarch64.whl", hash = "sha256:523e1fc03898bcb0711f78d6f21eee58c1f865bb764cbd36b9549580a4c43454", size = 230122 },
+    { url = "https://files.pythonhosted.org/packages/bb/55/a513de61cafe6bd70c064a5b714dc084120fe8f90a5ba51fbc5cfe42fc13/glfw-2.8.0-py2.py27.py3.py30.py31.py32.py33.py34.py35.py36.py37.py38.p39.p310.p311.p312.p313-none-manylinux_2_28_x86_64.whl", hash = "sha256:9cd20351b14587c6fe7063afb33cc03152e38dd2bff2b69613cb044bf3bdb635", size = 243445 },
+    { url = "https://files.pythonhosted.org/packages/64/65/3c18a715c8a57a4e1de96311b6ad6c77c3b90535fc92c4a5e26b2e18f87d/glfw-2.8.0-py2.py27.py3.py30.py31.py32.py33.py34.py35.py36.py37.py38.p39.p310.p311.p312.p313-none-win32.whl", hash = "sha256:13a75d8d3e8d4bb24595f2354a392ccf7c54ddd20dacb88e1188b760f2a7714b", size = 552596 },
+    { url = "https://files.pythonhosted.org/packages/9d/3d/29791f39363b613a0b62b9ca7a2449ef55fe51096797ae3bc90c1bb8d143/glfw-2.8.0-py2.py27.py3.py30.py31.py32.py33.py34.py35.py36.py37.py38.p39.p310.p311.p312.p313-none-win_amd64.whl", hash = "sha256:1416f10d2c2748c39910e9d9e6a10a5473743c5a745518061e4051be4c5caaa1", size = 559382 },
 ]
 
 [[package]]
 name = "pyopengl"
-version = "3.1.5"
+version = "3.1.7"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/b8/73/31c8177f3d236e9a5424f7267659c70ccea604dab0585bfcd55828397746/PyOpenGL-3.1.5.tar.gz", hash = "sha256:4107ba0d0390da5766a08c242cf0cf3404c377ed293c5f6d701e457c57ba3424", size = 1835295 }
+sdist = { url = "https://files.pythonhosted.org/packages/72/b6/970868d44b619292f1f54501923c69c9bd0ab1d2d44cf02590eac2706f4f/PyOpenGL-3.1.7.tar.gz", hash = "sha256:eef31a3888e6984fd4d8e6c9961b184c9813ca82604d37fe3da80eb000a76c86", size = 1896446 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/47/9a/8d9364533ebcaa13621994a63dcc6a6051e27671ae5e1715dac4af18cac2/PyOpenGL-3.1.5-py3-none-any.whl", hash = "sha256:36b4ac28220e4bfa29e5557525ad2967ca74558a94bccea48864fc742b18db11", size = 2431224 },
+    { url = "https://files.pythonhosted.org/packages/99/48/00e31747821d3fc56faddd00a4725454d1e694a8b67d715cf20f531506a5/PyOpenGL-3.1.7-py3-none-any.whl", hash = "sha256:a6ab19cf290df6101aaf7470843a9c46207789855746399d0af92521a0a92b7a", size = 2416834 },
 ]
 
 [[package]]

@@ -11,6 +11,9 @@ Co-authored by [@liam-cregg](https://github.com/liamg-cregg).
 Prerequisites:
 
 - [uv](https://docs.astral.sh/uv/getting-started/installation/)
+- [OpenGL GLUT][glut] (optional)
+
+[glut]: https://www.opengl.org/resources/libraries/glut/glut_downloads.php
 
 Steps:
 
